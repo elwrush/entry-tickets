@@ -39,10 +39,7 @@ OXFORD_3000_CEFR_URL = (
 )
 
 # Grammar focus from user input
-GRAMMAR = {
-    "M2": {"focus": "Compound sentences", "level": "B1"},
-    "M3": {"focus": "Sentence fragments and run-ons", "level": "B2"},
-}
+GRAMMAR = {}  # Populated from CLI args
 
 
 # ---------------------------------------------------------------------------
@@ -696,7 +693,191 @@ def write_answer_key(level: str, data: dict, test_number: int):
 # Main
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Grammar question bank
+# ---------------------------------------------------------------------------
+
+# Bank of T/F and short-answer questions per grammar focus.
+# Each entry: {"tf": [Q1, Q2], "short": {Q3}}.
+# Questions are selected by seeded random using the grammar focus + test number.
+
+GRAMMAR_BANK = {
+    "compound sentences": {
+        "tf_pool": [
+            {
+                "statement": 'The following sentence is compound: "My friend and I went to Paris last year."',
+                "answer": "F",
+                "explanation": "Simple sentence (one subject 'my friend and I', one predicate 'went'). A compound sentence has two independent clauses joined by a conjunction.",
+            },
+            {
+                "statement": 'This sentence is punctuated correctly: "My sister likes chocolate but I prefer icecream."',
+                "answer": "F",
+                "explanation": "Missing comma before 'but'. Should be: '...chocolate, but I...'",
+            },
+            {
+                "statement": 'The following is a compound sentence: "She opened the door and the cat ran out."',
+                "answer": "T",
+                "explanation": "Two independent clauses ('She opened the door' + 'the cat ran out') joined by 'and'.",
+            },
+            {
+                "statement": 'This sentence contains a coordinating conjunction: "I like tea but my brother prefers coffee."',
+                "answer": "T",
+                "explanation": "'But' is a coordinating conjunction joining two independent clauses.",
+            },
+            {
+                "statement": 'The following is a simple sentence: "We went to the beach and we swam in the sea."',
+                "answer": "F",
+                "explanation": "This is a compound sentence — two independent clauses joined by 'and'.",
+            },
+            {
+                "statement": 'This sentence needs a comma: "He studied hard so he passed the exam."',
+                "answer": "T",
+                "explanation": "Compound sentence needs a comma before 'so'. Should be: '...hard, so he...'",
+            },
+        ],
+        "short_pool": [
+            {
+                "question": 'How many clauses does this sentence have? "My friend is a wise and courageous person."',
+                "answer": "1",
+                "acceptable_answers": ["1", "one", "1 clause", "one clause"],
+            },
+            {
+                "question": 'Is this a compound sentence? Answer yes or no: "She sings and dances beautifully."',
+                "answer": "no",
+                "acceptable_answers": ["no", "n", "false", "f", "simple"],
+            },
+            {
+                "question": 'What conjunction joins these clauses? "I wanted to go but I was too tired."',
+                "answer": "but",
+                "acceptable_answers": ["but"],
+            },
+            {
+                "question": 'How many independent clauses does a compound sentence need?',
+                "answer": "2",
+                "acceptable_answers": ["2", "two"],
+            },
+        ],
+    },
+    "sentence fragments and run-ons": {
+        "tf_pool": [
+            {
+                "statement": 'The following is a complete sentence: "Because she was tired after the long journey."',
+                "answer": "F",
+                "explanation": "This is a sentence fragment (dependent clause). A complete sentence needs an independent clause.",
+            },
+            {
+                "statement": 'This is a run-on sentence: "I love reading books I could spend all day in a library."',
+                "answer": "T",
+                "explanation": "Two independent clauses joined without punctuation or conjunction — a fused sentence (run-on).",
+            },
+            {
+                "statement": 'The following is a complete sentence: "When the bell rang."',
+                "answer": "F",
+                "explanation": "This is a fragment — 'when' makes it a dependent clause. Needs an independent clause.",
+            },
+            {
+                "statement": 'This sentence is correct: "She went to the store and bought milk eggs and bread."',
+                "answer": "F",
+                "explanation": "Missing commas in a list. Should be: 'milk, eggs, and bread.'",
+            },
+            {
+                "statement": 'The following is a complete sentence: "She ran."',
+                "answer": "T",
+                "explanation": "A complete sentence needs only a subject and a verb. 'She ran' has both.",
+            },
+            {
+                "statement": 'This is a run-on sentence: "The weather was cold we stayed inside."',
+                "answer": "T",
+                "explanation": "Two independent clauses run together without punctuation or conjunction.",
+            },
+        ],
+        "short_pool": [
+            {
+                "question": 'Sentence or fragment? "Although the movie was long and boring."',
+                "answer": "fragment",
+                "acceptable_answers": ["fragment", "sentence fragment", "F", "frag"],
+            },
+            {
+                "question": 'Sentence or fragment? "She smiled."',
+                "answer": "sentence",
+                "acceptable_answers": ["sentence", "complete sentence", "S", "T"],
+            },
+            {
+                "question": 'Is this a run-on? Answer yes or no: "I went home then I had dinner."',
+                "answer": "yes",
+                "acceptable_answers": ["yes", "y", "true", "t", "run-on"],
+            },
+            {
+                "question": 'What is missing in this sentence? "I like reading I like writing too."',
+                "answer": "punctuation",
+                "acceptable_answers": ["punctuation", "a conjunction", "conjunction", "comma", "period"],
+            },
+        ],
+    },
+    "first conditional": {
+        "tf_pool": [
+            {
+                "statement": 'This sentence is correct: "If it will rain, I stay home."',
+                "answer": "F",
+                "explanation": "First conditional uses present simple in the if-clause, not 'will'. Correct: 'If it rains, I will stay home.'",
+            },
+            {
+                "statement": 'This is a correct first conditional: "If she studies, she will pass the exam."',
+                "answer": "T",
+                "explanation": "Present simple in the if-clause ('studies'), will + infinitive in the main clause ('will pass').",
+            },
+        ],
+        "short_pool": [
+            {
+                "question": 'Complete: "If you heat ice, it ___." (fill with one word)',
+                "answer": "melts",
+                "acceptable_answers": ["melts", "will melt"],
+            },
+        ],
+    },
+}
+
+
+def select_grammar_questions(grammar_focus: str, test_number: int, seed_base: str) -> dict:
+    """Select T/F and short-answer questions from the bank for a given grammar focus."""
+    key = grammar_focus.lower().strip()
+    bank = GRAMMAR_BANK.get(key)
+    if not bank:
+        print(f"  WARNING: No grammar bank for '{grammar_focus}'. Using generic questions.")
+        return {
+            "tf": [
+                {"number": 5, "statement": 'Grammar question 1 — check with your teacher.', "answer": "?", "explanation": "Bank not found"},
+                {"number": 6, "statement": 'Grammar question 2 — check with your teacher.', "answer": "?", "explanation": "Bank not found"},
+            ],
+            "short": {"number": 7, "question": 'Grammar question — check with your teacher.', "answer": "?", "acceptable_answers": ["?"]},
+        }
+
+    rng = random.Random(f"{seed_base}-grammar-{key}")
+
+    # Select 2 T/F questions (without replacement)
+    tf_pool = bank["tf_pool"]
+    rng.shuffle(tf_pool)
+    selected_tf = tf_pool[:2]
+    for i, q in enumerate(selected_tf):
+        q["number"] = 5 + i
+
+    # Select 1 short-answer question
+    short_pool = bank["short_pool"]
+    rng.shuffle(short_pool)
+    selected_short = short_pool[0].copy()
+    selected_short["number"] = 7
+
+    return {"tf": selected_tf, "short": selected_short}
+
+
 def main():
+    # Parse CLI arguments
+    import argparse
+    parser = argparse.ArgumentParser(description="Build entry ticket test slideshow")
+    parser.add_argument("--m2-grammar", help="Grammar focus for M2 (B1 level)")
+    parser.add_argument("--m3-grammar", help="Grammar focus for M3 (B2 level)")
+    args = parser.parse_args()
+
     # Determine test number
     test_number = 1
     if ANSWER_KEYS_DIR.exists():
@@ -712,6 +893,15 @@ def main():
 
     print(f"Building Entry Ticket Number {test_number}")
     print()
+
+    # Grammar focus: accept from CLI or prompt interactively
+    m2_grammar = args.m2_grammar or input("M2 grammar focus? (B1 level) [Compound sentences]: ").strip() or "Compound sentences"
+    m3_grammar = args.m3_grammar or input("M3 grammar focus? (B2 level) [Sentence fragments and run-ons]: ").strip() or "Sentence fragments and run-ons"
+
+    global GRAMMAR
+    GRAMMAR.clear()
+    GRAMMAR["M2"] = {"focus": m2_grammar, "level": "B1"}
+    GRAMMAR["M3"] = {"focus": m3_grammar, "level": "B2"}
 
     # Step 1: Extract word lists
     print("Extracting B1 words from Oxford 3000...")
@@ -807,52 +997,16 @@ def main():
         else:
             print(f"  WARNING: No definition for {level} MC word '{word}'")
 
-    # Step 4: True/False and Short Answer questions
-    print("\nBuilding grammar questions...")
-
-    # M2: Compound sentences (B1)
-    m2_data["tf"] = [
-        {
-            "number": 5,
-            "statement": 'The following sentence is compound: "My friend and I went to Paris last year."',
-            "answer": "F",
-            "explanation": "Simple sentence (one subject, one predicate). A compound sentence has two independent clauses joined by a conjunction.",
-        },
-        {
-            "number": 6,
-            "statement": 'This sentence is punctuated correctly: "My sister likes chocolate but I prefer icecream."',
-            "answer": "F",
-            "explanation": "Missing comma before 'but' in a compound sentence. Should be: '...chocolate, but I...'",
-        },
-    ]
-    m2_data["short"] = {
-        "number": 7,
-        "question": 'How many clauses does this sentence have? "My friend is a wise and courageous person."',
-        "answer": "1",
-        "acceptable_answers": ["1", "one", "1 clause", "one clause"],
-    }
-
-    # M3: Sentence fragments and run-ons (B2)
-    m3_data["tf"] = [
-        {
-            "number": 5,
-            "statement": 'The following is a complete sentence: "Because she was tired after the long journey."',
-            "answer": "F",
-            "explanation": "This is a sentence fragment (dependent clause). A complete sentence needs an independent clause.",
-        },
-        {
-            "number": 6,
-            "statement": 'This is a run-on sentence: "I love reading books I could spend all day in a library."',
-            "answer": "T",
-            "explanation": "Two independent clauses joined without punctuation or a conjunction — this is a fused sentence (run-on).",
-        },
-    ]
-    m3_data["short"] = {
-        "number": 7,
-        "question": 'Sentence or fragment? "Although the movie was long and boring."',
-        "answer": "fragment",
-        "acceptable_answers": ["fragment", "sentence fragment", "F", "frag"],
-    }
+    # Step 4: True/False and Short Answer questions from grammar bank
+    print(f"\nBuilding grammar questions ({GRAMMAR['M2']['focus']} / {GRAMMAR['M3']['focus']})...")
+    for level, data in [("M2", m2_data), ("M3", m3_data)]:
+        focus = GRAMMAR[level]["focus"]
+        result = select_grammar_questions(focus, test_number, seed_base)
+        data["tf"] = result["tf"]
+        data["short"] = result["short"]
+        for q in data["tf"]:
+            print(f"  {level} T/F {q['number']}: {q['statement'][:60]}... → {q['answer']}")
+        print(f"  {level} short: {data['short']['question'][:60]}... → {data['short']['answer']}")
 
     # Step 5: Generate TTS dictation audio
     print("\nGenerating TTS dictation audio...")

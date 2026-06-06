@@ -1,0 +1,74 @@
+{
+  "test": "M2 Entry Ticket Number 3",
+  "date": "060726",
+  "grammar_focus": "Compound sentences",
+  "sections": {
+    "phonemic": {
+      "instruction": "Write the English words",
+      "items": [
+        {
+          "number": 1,
+          "word": "count",
+          "phonemic": "kaʊnt"
+        },
+        {
+          "number": 2,
+          "word": "remind",
+          "phonemic": "rɪ'maɪnd"
+        }
+      ]
+    },
+    "dictation": {
+      "instruction": "Write what you hear",
+      "items": [
+        {
+          "number": 3,
+          "word": "encourage"
+        }
+      ]
+    },
+    "multiple_choice": {
+      "instruction": "Write the letter of the correct definition",
+      "items": [
+        {
+          "number": 4,
+          "word": "specifically",
+          "options": {
+            "A": "very quickly; at a fast speed",
+            "B": "for one particular thing or purpose",
+            "C": "finally, after everything else has been considered"
+          },
+          "correct": "B",
+          "definition": "for one particular thing or purpose"
+        }
+      ]
+    },
+    "true_false": {
+      "instruction": "True or False? Write T or F.",
+      "items": [
+        {
+          "number": 5,
+          "statement": "This sentence contains a coordinating conjunction: \"I like tea but my brother prefers coffee.\"",
+          "answer": "T",
+          "explanation": "'But' is a coordinating conjunction joining two independent clauses."
+        },
+        {
+          "number": 6,
+          "statement": "This sentence needs a comma: \"He studied hard so he passed the exam.\"",
+          "answer": "T",
+          "explanation": "Compound sentence needs a comma before 'so'. Should be: '...hard, so he...'"
+        }
+      ]
+    },
+    "short_answer": {
+      "instruction": "Read the question. Write your answer (max 3 words or a number).",
+      "number": 7,
+      "question": "How many independent clauses does a compound sentence need?",
+      "answer": "2",
+      "acceptable_answers": [
+        "2",
+        "two"
+      ]
+    }
+  }
+}
