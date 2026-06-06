@@ -1,0 +1,5 @@
+node_modules/
+.kilo/node_modules/
+tmp/
+.word_cache/
+*.mp3
