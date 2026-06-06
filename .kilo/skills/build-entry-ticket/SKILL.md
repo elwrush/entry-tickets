@@ -45,7 +45,9 @@ Use this skill when you need to build entry ticket tests for M2 (B1) and/or M3 (
 
 ### Step 1 — Grammar Focus
 
-Ask the user for the grammar focus for each level (used for true/false items 5–6 and short-answer item 7):
+**The agent MUST ask the user for the grammar focus before running any build command.** Do not skip this step. Do not use defaults without asking.
+
+Ask the user:
 
 > **M2 (B1):** *"What is the grammar focus for this M2 entry ticket?"*
 
@@ -55,6 +57,14 @@ Collect enough detail to write unambiguous questions:
 - Target structure
 - Example of correct vs incorrect usage
 - Any specific terminology the students have been taught
+
+**Then pass both answers as CLI flags to the build script:**
+
+```powershell
+python scripts/build_test_slides.py --m2-grammar "Compound sentences" --m3-grammar "Sentence fragments and run-ons"
+```
+
+The script requires both flags. It will error if either is missing.
 
 ---
 

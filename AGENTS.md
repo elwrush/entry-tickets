@@ -24,10 +24,11 @@ config/tts_vocab_voice.json  # Inworld TTS voice ID
 
 ```powershell
 # Build next test (auto-detects test number from ANSWER_KEYS/)
-python scripts/build_test_slides.py
+# --m2-grammar and --m3-grammar are REQUIRED — agent must ask user first
+python scripts/build_test_slides.py --m2-grammar "Compound sentences" --m3-grammar "Sentence fragments and run-ons"
 
 # Rebuild test 1 (delete ANSWER_KEYS first or they auto-increment)
-Remove-Item ANSWER_KEYS -Recurse; python scripts/build_test_slides.py
+Remove-Item ANSWER_KEYS -Recurse; python scripts/build_test_slides.py --m2-grammar "..." --m3-grammar "..."
 
 # Build per-class PDF answer sheets (run after slides build)
 python scripts/build_entry_tickets.py M3-4A

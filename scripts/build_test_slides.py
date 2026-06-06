@@ -894,9 +894,13 @@ def main():
     print(f"Building Entry Ticket Number {test_number}")
     print()
 
-    # Grammar focus: accept from CLI or prompt interactively
-    m2_grammar = args.m2_grammar or input("M2 grammar focus? (B1 level) [Compound sentences]: ").strip() or "Compound sentences"
-    m3_grammar = args.m3_grammar or input("M3 grammar focus? (B2 level) [Sentence fragments and run-ons]: ").strip() or "Sentence fragments and run-ons"
+    # Grammar focus: must be passed via CLI args (agent asks the user per SKILL.md)
+    m2_grammar = args.m2_grammar
+    m3_grammar = args.m3_grammar
+    if not m2_grammar or not m3_grammar:
+        print("ERROR: --m2-grammar and --m3-grammar are required.")
+        print("Usage: python scripts/build_test_slides.py --m2-grammar \"...\" --m3-grammar \"...\"")
+        sys.exit(1)
 
     global GRAMMAR
     GRAMMAR.clear()
