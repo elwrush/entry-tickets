@@ -1,0 +1,76 @@
+{
+  "test": "M2 Entry Ticket Number 2",
+  "date": "060726",
+  "grammar_focus": "Compound sentences",
+  "sections": {
+    "phonemic": {
+      "instruction": "Write the English words",
+      "items": [
+        {
+          "number": 1,
+          "word": "advise",
+          "phonemic": "əd'vaɪz"
+        },
+        {
+          "number": 2,
+          "word": "worst",
+          "phonemic": "wɜːst"
+        }
+      ]
+    },
+    "dictation": {
+      "instruction": "Write what you hear",
+      "items": [
+        {
+          "number": 3,
+          "word": "punish"
+        }
+      ]
+    },
+    "multiple_choice": {
+      "instruction": "Write the letter of the correct definition",
+      "items": [
+        {
+          "number": 4,
+          "word": "consequence",
+          "options": {
+            "A": "something that happens as a result of an action",
+            "B": "a possible future effect or result of something",
+            "C": "an agreement where both sides give up something"
+          },
+          "correct": "A",
+          "definition": "something that happens as a result of an action"
+        }
+      ]
+    },
+    "true_false": {
+      "instruction": "True or False? Write T or F.",
+      "items": [
+        {
+          "number": 5,
+          "statement": "The following sentence is compound: \"My friend and I went to Paris last year.\"",
+          "answer": "F",
+          "explanation": "Simple sentence (one subject, one predicate). A compound sentence has two independent clauses joined by a conjunction."
+        },
+        {
+          "number": 6,
+          "statement": "This sentence is punctuated correctly: \"My sister likes chocolate but I prefer icecream.\"",
+          "answer": "F",
+          "explanation": "Missing comma before 'but' in a compound sentence. Should be: '...chocolate, but I...'"
+        }
+      ]
+    },
+    "short_answer": {
+      "instruction": "Read the question. Write your answer (max 3 words or a number).",
+      "number": 7,
+      "question": "How many clauses does this sentence have? \"My friend is a wise and courageous person.\"",
+      "answer": "1",
+      "acceptable_answers": [
+        "1",
+        "one",
+        "1 clause",
+        "one clause"
+      ]
+    }
+  }
+}

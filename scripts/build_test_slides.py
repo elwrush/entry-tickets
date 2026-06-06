@@ -567,7 +567,74 @@ def splice_into_template(sections_html: str, test_number: int) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Step 6: Write answer keys
+# Root TOC generation
+# ---------------------------------------------------------------------------
+
+def build_root_toc():
+    """Generate slides/index.html listing all available entry ticket versions."""
+    versions = sorted(
+        d.name for d in SLIDES_DIR.iterdir()
+        if d.is_dir() and d.name.startswith("entry-ticket-") and (d / "index.html").exists()
+    )
+
+    cards = ""
+    for v in versions:
+        num = v.replace("entry-ticket-", "")
+        cards += f"""      <a href="{v}/" class="card">
+        <div class="card-title">Entry Ticket {num}</div>
+        <div class="card-dir">{v}</div>
+      </a>
+"""
+
+    landing = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entry Tickets</title>
+  <style>
+    * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+    body {{
+      font-family: Arial, sans-serif;
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }}
+    h1 {{ font-size: 2.2em; color: #fff; margin-bottom: 40px; }}
+    .grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 640px;
+      width: 100%;
+    }}
+    .card {{
+      background: #111; border-radius: 8px; padding: 24px;
+      text-decoration: none; color: #fff;
+      transition: background 0.2s;
+    }}
+    .card:hover {{ background: #222; }}
+    .card-title {{ font-size: 1.15em; font-weight: bold; color: #ffdd00; }}
+    .card-dir {{ font-size: 0.85em; color: #888; margin-top: 4px; }}
+  </style>
+</head>
+<body>
+  <h1>Entry Tickets</h1>
+  <div class="grid">
+{cards}  </div>
+</body>
+</html>"""
+
+    toc_path = SLIDES_DIR / "index.html"
+    toc_path.write_text(landing, encoding="utf-8")
+    print(f"  Root TOC: {toc_path}")
+
+
+# ---------------------------------------------------------------------------
+# Step 8: Write answer keys
 # ---------------------------------------------------------------------------
 
 def write_answer_key(level: str, data: dict, test_number: int):
@@ -657,13 +724,38 @@ def main():
 
     print()
 
-    # Step 2: Select words for each level (filtered to those with available definitions)
+    # Step 2: Collect previously used words from all earlier answer keys
+    def get_used_words() -> set:
+        """Scan ANSWER_KEYS/ for all words used in previous tests."""
+        used = set()
+        if not ANSWER_KEYS_DIR.exists():
+            return used
+        for f in sorted(ANSWER_KEYS_DIR.glob("*.json")):
+            try:
+                data = json.loads(f.read_text(encoding="utf-8"))
+                for sec_key, sec_val in data.get("sections", {}).items():
+                    items = sec_val.get("items", [])
+                    if isinstance(items, dict):
+                        items = [items]
+                    for item in items:
+                        word = item.get("word", "")
+                        if word:
+                            used.add(word.lower())
+            except (json.JSONDecodeError, KeyError):
+                continue
+        return used
+
+    used_words = get_used_words()
+    if used_words:
+        print(f"  Excluding {len(used_words)} previously used word(s): {', '.join(sorted(used_words))}")
+
+    # Select words for each level (filtered to those with available definitions, excluding used words)
     today = __import__("datetime").datetime.now().strftime("%m%d%y")
     seed_base = f"{today}-{test_number}"
     
     # Only use words that have definitions in our bank
-    b1_with_defs = [w for w in b1_words if w in WORD_MEANINGS]
-    b2_with_defs = [w for w in b2_words if w in WORD_MEANINGS]
+    b1_with_defs = [w for w in b1_words if w in WORD_MEANINGS and w.lower() not in used_words]
+    b2_with_defs = [w for w in b2_words if w in WORD_MEANINGS and w.lower() not in used_words]
     
     if len(b1_with_defs) < 6:
         print(f"  WARNING: Only {len(b1_with_defs)} B1 words with definitions available")
@@ -764,10 +856,15 @@ def main():
 
     # Step 5: Generate TTS dictation audio
     print("\nGenerating TTS dictation audio...")
+    test_dir = SLIDES_DIR / f"entry-ticket-{test_number}"
+    test_assets = test_dir / "assets"
+    test_dir.mkdir(parents=True, exist_ok=True)
+    test_assets.mkdir(exist_ok=True)
+
     for level, data in [("M2", m2_data), ("M3", m3_data)]:
         word = data["dictation"]["word"]
         num = data["dictation"]["number"]
-        out = ASSETS_DIR / f"{level.lower()}_dictation_{word}.mp3"
+        out = test_assets / f"{level.lower()}_dictation_{word}.mp3"
         generate_dictation_audio(word, num, level.lower(), out)
 
     # Step 6: Build slides
@@ -775,12 +872,14 @@ def main():
     sections_html = build_all_slides(m2_data, m3_data, test_number)
     slides_html = splice_into_template(sections_html, test_number)
 
-    SLIDES_DIR.mkdir(parents=True, exist_ok=True)
-    index_path = SLIDES_DIR / "index.html"
+    index_path = test_dir / "index.html"
     index_path.write_text(slides_html, encoding="utf-8")
     print(f"  Slides: {index_path}")
 
-    # Step 7: Write answer keys
+    # Step 7: Generate root index.html (TOC listing all test versions)
+    build_root_toc()
+
+    # Step 8: Write answer keys
     print("\nWriting answer keys...")
     write_answer_key("M2", m2_data, test_number)
     write_answer_key("M3", m3_data, test_number)

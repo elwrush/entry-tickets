@@ -11,8 +11,10 @@ templates/
   ACT.png, cambridge.png   # Logo images for Typst PDF headers
 ANSWER_KEYS/               # Generated answer key JSONs (iteratively labelled)
 slides/                    # Generated reveal.js output
-  index.html               # Combined M2+M3 deck (15 slides)
-  assets/                  # TTS dictation audio MP3s
+  index.html               # Root TOC — lists all available entry ticket versions
+  entry-ticket-{N}/        # Per-test subfolder
+    index.html             # Combined M2+M3 deck (15 slides)
+    assets/                # TTS dictation audio MP3s
 output/                    # Per-class PDF answer sheets from Typst
 .word_cache/               # Cached Oxford 3000 word lists (avoid re-download)
 config/tts_vocab_voice.json  # Inworld TTS voice ID
