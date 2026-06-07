@@ -76,8 +76,8 @@ M2 runs slides 0–7, then M3 runs slides 8–14 (same pattern repeated).
 - **Text:** White, Arial, no text-shadow, no decorations, unadorned
 - **Yellow** (`#ffdd00 !important`): target sentences in T/F (5,6), target sentence in short answer (7), MC word (4), A/B/C labels on MC options
 - All yellow inline styles need `!important` because template CSS uses `.reveal * { color: #fff !important; }`
-- Phonemic script: bare IPA (no slashes), no syllable-separating periods, stress marks use `'` not `ˈ`
-- Example: `'ɒbviəs` not `/ˈɒb.vi.əs/`
+- Phonemic script: wrap in `/.../`, no syllable-separating periods, stress marks use `'` not `ˈ`
+- Example: `/'ɒbviəs/` not `/ˈɒb.vi.əs/`
 
 ## Navigation
 

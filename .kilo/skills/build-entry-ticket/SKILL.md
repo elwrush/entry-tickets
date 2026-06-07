@@ -117,7 +117,7 @@ The agent adds the missing entry directly to `config/phonemic.json`:
 - Using the `edit` tool with raw IPA characters (works correctly — the edit tool handles UTF-8)
 - Or using JSON `\uXXXX` escapes if console encoding prevents direct character input
 
-**Conventions:** Raw IPA string without surrounding slashes, no syllable-separating periods (`.`), primary stress marked with ASCII apostrophe (`'`) not IPA `ˈ`. Displayed on the slide as bare IPA symbols.
+**Conventions:** Raw IPA string wrapped in `/.../` on slides, no syllable-separating periods (`.`), primary stress marked with ASCII apostrophe (`'`) not IPA `ˈ`.
 
 **No phonetic libraries or APIs:** `eng_to_ipa` is installed but never used. The Free Dictionary API is never called for phonemic data. All transcriptions come from agent knowledge.
 
@@ -175,8 +175,8 @@ All sections use `data-background-color="#000000"`.
 <section id="slide-m2-phonemic" data-background-color="#000000" data-timer="15">
   <p style="font-family: Arial, sans-serif; font-size: 1.1em; font-style: italic; color: #ccc;">Write the English words</p>
   <ol style="font-family: Arial, sans-serif; color: #fff; font-size: 1.6em;">
-    <li>ˈprɒsəpæɡˈnəʊziə</li>
-    <li>ɪkˈstrɔːrdɪneri</li>
+    <li>/ˈprɒsəpæɡˈnəʊziə/</li>
+    <li>/ɪkˈstrɔːrdɪneri/</li>
   </ol>
   <aside class="notes">15 seconds. Answers: 1=prosopagnosia, 2=extraordinary</aside>
 </section>
