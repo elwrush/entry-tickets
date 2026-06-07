@@ -122,58 +122,7 @@ def select_words(word_list: list[str], count: int, seed: str, min_len: int = 5) 
 # Standard ESL phonemic transcriptions (learner-dictionary notation)
 # ---------------------------------------------------------------------------
 
-PHONEMIC = {
-    # B1 words
-    "obvious": "'ɒbviəs",
-    "separate": "'sepərət",
-    "punish": "'pʌnɪʃ",
-    "specifically": "spə'sɪfɪkli",
-    "battery": "'bætəri",
-    "worst": "wɜːst",
-    "admit": "əd'mɪt",
-    "advise": "əd'vaɪz",
-    "operation": "ˌɒpə'reɪʃən",
-    "count": "kaʊnt",
-    "respond": "rɪ'spɒnd",
-    "positive": "'pɒzətɪv",
-    "arrange": "ə'reɪndʒ",
-    "connect": "kə'nekt",
-    "discover": "dɪ'skʌvə",
-    "encourage": "ɪn'kʌrɪdʒ",
-    "establish": "ɪ'stæblɪʃ",
-    "instruct": "ɪn'strʌkt",
-    "measure": "'meʒə",
-    "prepare": "prɪ'peə",
-    "remind": "rɪ'maɪnd",
-    "struggle": "'strʌɡəl",
-    "suggest": "sə'dʒest",
-    "support": "sə'pɔːt",
-    # B2 words
-    "rapidly": "'ræpɪdli",
-    "ultimately": "'ʌltɪmətli",
-    "interrupt": "ˌɪntə'rʌpt",
-    "parliament": "'pɑːləmənt",
-    "facility": "fə'sɪləti",
-    "prospect": "'prɒspekt",
-    "actual": "'æktʃuəl",
-    "perspective": "pə'spektɪv",
-    "controversy": "'kɒntrəvɜːsi",
-    "consequence": "'kɒnsɪkwəns",
-    "interpret": "ɪn'tɜːprɪt",
-    "profound": "prə'faʊnd",
-    "sophisticated": "sə'fɪstɪkeɪtɪd",
-    "phenomenon": "fɪ'nɒmɪnən",
-    "initiative": "ɪ'nɪʃətɪv",
-    "inevitable": "ɪ'nevɪtəbəl",
-    "explicit": "ɪk'splɪsɪt",
-    "compromise": "'kɒmprəmaɪz",
-    "ambiguous": "æm'bɪɡjuəs",
-    "sufficient": "sə'fɪʃənt",
-    "contemporary": "kən'tempərəri",
-    "manipulate": "mə'nɪpjʊleɪt",
-    "equivalent": "ɪ'kwɪvələnt",
-    "implication": "ˌɪmplɪ'keɪʃən",
-}
+PHONEMIC = PHONEMIC = json.load(open(PROJECT_ROOT / "config" / "phonemic.json", encoding="utf-8"))
 
 
 def get_phonemic(word: str) -> str | None:
@@ -187,58 +136,7 @@ def get_phonemic(word: str) -> str | None:
 
 # Word-to-meaning map: simple, level-appropriate definitions (B1/B2 accessible)
 # Format: {word: { "def": "simple definition", "pos": "noun|verb|adj|adv" }}
-WORD_MEANINGS = {
-    # B1 level words
-    "punish": {"def": "to make someone suffer because they did something wrong", "pos": "verb"},
-    "specifically": {"def": "for one particular thing or purpose", "pos": "adv"},
-    "battery": {"def": "a thing that gives power to phones, toys, and other devices", "pos": "noun"},
-    "worst": {"def": "more bad than anything else; the opposite of best", "pos": "adj"},
-    "admit": {"def": "to agree that something is true, especially when it is bad", "pos": "verb"},
-    "advise": {"def": "to tell someone what you think they should do", "pos": "verb"},
-    "operation": {"def": "a planned activity that has a particular purpose", "pos": "noun"},
-    "count": {"def": "to say numbers in order", "pos": "verb"},
-    "respond": {"def": "to answer someone or react to something", "pos": "verb"},
-    "obvious": {"def": "easy to see or understand", "pos": "adj"},
-    "positive": {"def": "feeling good and happy about something", "pos": "adj"},
-    "arrange": {"def": "to put things in a particular order or position", "pos": "verb"},
-    "connect": {"def": "to join two or more things together", "pos": "verb"},
-    "discover": {"def": "to find something for the first time", "pos": "verb"},
-    "encourage": {"def": "to give someone hope or confidence", "pos": "verb"},
-    "establish": {"def": "to start or create something that will last", "pos": "verb"},
-    "instruct": {"def": "to teach someone how to do something", "pos": "verb"},
-    "measure": {"def": "to find the size, amount, or level of something", "pos": "verb"},
-    "prepare": {"def": "to make something ready for use", "pos": "verb"},
-    "remind": {"def": "to help someone remember something", "pos": "verb"},
-    "separate": {"def": "to divide things into different parts or groups", "pos": "verb"},
-    "struggle": {"def": "to try very hard to do something difficult", "pos": "verb"},
-    "suggest": {"def": "to tell someone your idea about what they should do", "pos": "verb"},
-    "support": {"def": "to help someone by agreeing with them or giving what they need", "pos": "verb"},
-    # B2 level words
-    "rapidly": {"def": "very quickly; at a fast speed", "pos": "adv"},
-    "ultimately": {"def": "finally, after everything else has been considered", "pos": "adv"},
-    "interrupt": {"def": "to stop someone while they are speaking or doing something", "pos": "verb"},
-    "parliament": {"def": "a group of people who make the laws in some countries", "pos": "noun"},
-    "facility": {"def": "a building or place that is used for a particular activity", "pos": "noun"},
-    "prospect": {"def": "the possibility that something good might happen in the future", "pos": "noun"},
-    "actual": {"def": "real and true, not imagined or guessed", "pos": "adj"},
-    "perspective": {"def": "a particular way of thinking about or looking at something", "pos": "noun"},
-    "controversy": {"def": "a strong disagreement about something that many people have different opinions about", "pos": "noun"},
-    "consequence": {"def": "something that happens as a result of an action", "pos": "noun"},
-    "interpret": {"def": "to explain the meaning of something", "pos": "verb"},
-    "profound": {"def": "very great or strong; having a deep effect", "pos": "adj"},
-    "sophisticated": {"def": "having a lot of experience and knowledge about the world", "pos": "adj"},
-    "phenomenon": {"def": "something that happens or exists that is unusual or interesting", "pos": "noun"},
-    "initiative": {"def": "a new plan or project to solve a problem", "pos": "noun"},
-    "inevitable": {"def": "certain to happen; impossible to avoid", "pos": "adj"},
-    "explicit": {"def": "said or written in a very clear and direct way", "pos": "adj"},
-    "compromise": {"def": "an agreement where both sides give up something", "pos": "noun"},
-    "ambiguous": {"def": "having more than one possible meaning; not clear", "pos": "adj"},
-    "sufficient": {"def": "enough for a particular purpose", "pos": "adj"},
-    "contemporary": {"def": "belonging to the present time; modern", "pos": "adj"},
-    "manipulate": {"def": "to control someone or something in a clever or dishonest way", "pos": "verb"},
-    "equivalent": {"def": "equal in value, amount, or meaning", "pos": "adj"},
-    "implication": {"def": "a possible future effect or result of something", "pos": "noun"},
-}
+WORD_MEANINGS = WORD_MEANINGS = json.load(open(PROJECT_ROOT / "config" / "definitions.json", encoding="utf-8"))
 
 
 def get_definition(word: str) -> str | None:
@@ -701,142 +599,7 @@ def write_answer_key(level: str, data: dict, test_number: int):
 # Each entry: {"tf": [Q1, Q2], "short": {Q3}}.
 # Questions are selected by seeded random using the grammar focus + test number.
 
-GRAMMAR_BANK = {
-    "compound sentences": {
-        "tf_pool": [
-            {
-                "statement": 'The following sentence is compound: "My friend and I went to Paris last year."',
-                "answer": "F",
-                "explanation": "Simple sentence (one subject 'my friend and I', one predicate 'went'). A compound sentence has two independent clauses joined by a conjunction.",
-            },
-            {
-                "statement": 'This sentence is punctuated correctly: "My sister likes chocolate but I prefer icecream."',
-                "answer": "F",
-                "explanation": "Missing comma before 'but'. Should be: '...chocolate, but I...'",
-            },
-            {
-                "statement": 'The following is a compound sentence: "She opened the door and the cat ran out."',
-                "answer": "T",
-                "explanation": "Two independent clauses ('She opened the door' + 'the cat ran out') joined by 'and'.",
-            },
-            {
-                "statement": 'This sentence contains a coordinating conjunction: "I like tea but my brother prefers coffee."',
-                "answer": "T",
-                "explanation": "'But' is a coordinating conjunction joining two independent clauses.",
-            },
-            {
-                "statement": 'The following is a simple sentence: "We went to the beach and we swam in the sea."',
-                "answer": "F",
-                "explanation": "This is a compound sentence — two independent clauses joined by 'and'.",
-            },
-            {
-                "statement": 'This sentence needs a comma: "He studied hard so he passed the exam."',
-                "answer": "T",
-                "explanation": "Compound sentence needs a comma before 'so'. Should be: '...hard, so he...'",
-            },
-        ],
-        "short_pool": [
-            {
-                "question": 'How many clauses does this sentence have? "My friend is a wise and courageous person."',
-                "answer": "1",
-                "acceptable_answers": ["1", "one", "1 clause", "one clause"],
-            },
-            {
-                "question": 'Is this a compound sentence? Answer yes or no: "She sings and dances beautifully."',
-                "answer": "no",
-                "acceptable_answers": ["no", "n", "false", "f", "simple"],
-            },
-            {
-                "question": 'What conjunction joins these clauses? "I wanted to go but I was too tired."',
-                "answer": "but",
-                "acceptable_answers": ["but"],
-            },
-            {
-                "question": 'How many independent clauses does a compound sentence need?',
-                "answer": "2",
-                "acceptable_answers": ["2", "two"],
-            },
-        ],
-    },
-    "sentence fragments and run-ons": {
-        "tf_pool": [
-            {
-                "statement": 'The following is a complete sentence: "Because she was tired after the long journey."',
-                "answer": "F",
-                "explanation": "This is a sentence fragment (dependent clause). A complete sentence needs an independent clause.",
-            },
-            {
-                "statement": 'This is a run-on sentence: "I love reading books I could spend all day in a library."',
-                "answer": "T",
-                "explanation": "Two independent clauses joined without punctuation or conjunction — a fused sentence (run-on).",
-            },
-            {
-                "statement": 'The following is a complete sentence: "When the bell rang."',
-                "answer": "F",
-                "explanation": "This is a fragment — 'when' makes it a dependent clause. Needs an independent clause.",
-            },
-            {
-                "statement": 'This sentence is correct: "She went to the store and bought milk eggs and bread."',
-                "answer": "F",
-                "explanation": "Missing commas in a list. Should be: 'milk, eggs, and bread.'",
-            },
-            {
-                "statement": 'The following is a complete sentence: "She ran."',
-                "answer": "T",
-                "explanation": "A complete sentence needs only a subject and a verb. 'She ran' has both.",
-            },
-            {
-                "statement": 'This is a run-on sentence: "The weather was cold we stayed inside."',
-                "answer": "T",
-                "explanation": "Two independent clauses run together without punctuation or conjunction.",
-            },
-        ],
-        "short_pool": [
-            {
-                "question": 'Sentence or fragment? "Although the movie was long and boring."',
-                "answer": "fragment",
-                "acceptable_answers": ["fragment", "sentence fragment", "F", "frag"],
-            },
-            {
-                "question": 'Sentence or fragment? "She smiled."',
-                "answer": "sentence",
-                "acceptable_answers": ["sentence", "complete sentence", "S", "T"],
-            },
-            {
-                "question": 'Is this a run-on? Answer yes or no: "I went home then I had dinner."',
-                "answer": "yes",
-                "acceptable_answers": ["yes", "y", "true", "t", "run-on"],
-            },
-            {
-                "question": 'What is missing in this sentence? "I like reading I like writing too."',
-                "answer": "punctuation",
-                "acceptable_answers": ["punctuation", "a conjunction", "conjunction", "comma", "period"],
-            },
-        ],
-    },
-    "first conditional": {
-        "tf_pool": [
-            {
-                "statement": 'This sentence is correct: "If it will rain, I stay home."',
-                "answer": "F",
-                "explanation": "First conditional uses present simple in the if-clause, not 'will'. Correct: 'If it rains, I will stay home.'",
-            },
-            {
-                "statement": 'This is a correct first conditional: "If she studies, she will pass the exam."',
-                "answer": "T",
-                "explanation": "Present simple in the if-clause ('studies'), will + infinitive in the main clause ('will pass').",
-            },
-        ],
-        "short_pool": [
-            {
-                "question": 'Complete: "If you heat ice, it ___." (fill with one word)',
-                "answer": "melts",
-                "acceptable_answers": ["melts", "will melt"],
-            },
-        ],
-    },
-}
-
+GRAMMAR_BANK = json.load(open(PROJECT_ROOT / "config" / "grammar_bank.json", encoding="utf-8"))
 
 def select_grammar_questions(grammar_focus: str, test_number: int, seed_base: str) -> dict:
     """Select T/F and short-answer questions from the bank for a given grammar focus."""
@@ -854,17 +617,17 @@ def select_grammar_questions(grammar_focus: str, test_number: int, seed_base: st
 
     rng = random.Random(f"{seed_base}-grammar-{key}")
 
-    # Select 2 T/F questions (without replacement)
-    tf_pool = bank["tf_pool"]
+    # Select 2 T/F questions (without replacement) — copy to avoid mutating global bank
+    tf_pool = list(bank["tf_pool"])
     rng.shuffle(tf_pool)
-    selected_tf = tf_pool[:2]
+    selected_tf = [dict(q) for q in tf_pool[:2]]
     for i, q in enumerate(selected_tf):
         q["number"] = 5 + i
 
-    # Select 1 short-answer question
-    short_pool = bank["short_pool"]
+    # Select 1 short-answer question — copy to avoid mutating global bank
+    short_pool = list(bank["short_pool"])
     rng.shuffle(short_pool)
-    selected_short = short_pool[0].copy()
+    selected_short = dict(short_pool[0])
     selected_short["number"] = 7
 
     return {"tf": selected_tf, "short": selected_short}
@@ -907,57 +670,52 @@ def main():
     GRAMMAR["M2"] = {"focus": m2_grammar, "level": "B1"}
     GRAMMAR["M3"] = {"focus": m3_grammar, "level": "B2"}
 
-    # Step 1: Extract word lists
-    print("Extracting B1 words from Oxford 3000...")
-    b1_words = extract_words_by_level(OXFORD_3000_CEFR_URL, "B1")
-    print(f"  Found {len(b1_words)} B1 words")
+    # Step 1: Load word banks (permanent config files — plain word lists, shrink as used)
+    b1_path = PROJECT_ROOT / "config" / "words_b1.json"
+    b2_path = PROJECT_ROOT / "config" / "words_b2.json"
+    
+    print(f"Loading B1 word bank from {b1_path.name}...")
+    with open(b1_path, encoding="utf-8") as f:
+        b1_all = json.load(f)
+    print(f"  {len(b1_all)} B1 words available")
 
-    print("Extracting B2 words from Oxford 3000...")
-    b2_words = extract_words_by_level(OXFORD_3000_CEFR_URL, "B2")
-    print(f"  Found {len(b2_words)} B2 words")
-
+    print(f"Loading B2 word bank from {b2_path.name}...")
+    with open(b2_path, encoding="utf-8") as f:
+        b2_all = json.load(f)
+    print(f"  {len(b2_all)} B2 words available")
     print()
 
-    # Step 2: Collect previously used words from all earlier answer keys
-    def get_used_words() -> set:
-        """Scan ANSWER_KEYS/ for all words used in previous tests."""
-        used = set()
-        if not ANSWER_KEYS_DIR.exists():
-            return used
-        for f in sorted(ANSWER_KEYS_DIR.glob("*.json")):
-            try:
-                data = json.loads(f.read_text(encoding="utf-8"))
-                for sec_key, sec_val in data.get("sections", {}).items():
-                    items = sec_val.get("items", [])
-                    if isinstance(items, dict):
-                        items = [items]
-                    for item in items:
-                        word = item.get("word", "")
-                        if word:
-                            used.add(word.lower())
-            except (json.JSONDecodeError, KeyError):
-                continue
-        return used
-
-    used_words = get_used_words()
-    if used_words:
-        print(f"  Excluding {len(used_words)} previously used word(s): {', '.join(sorted(used_words))}")
-
-    # Select words for each level (filtered to those with available definitions, excluding used words)
     today = __import__("datetime").datetime.now().strftime("%m%d%y")
     seed_base = f"{today}-{test_number}"
-    
-    # Only use words that have definitions in our bank
-    b1_with_defs = [w for w in b1_words if w in WORD_MEANINGS and w.lower() not in used_words]
-    b2_with_defs = [w for w in b2_words if w in WORD_MEANINGS and w.lower() not in used_words]
-    
-    if len(b1_with_defs) < 6:
-        print(f"  WARNING: Only {len(b1_with_defs)} B1 words with definitions available")
-    if len(b2_with_defs) < 6:
-        print(f"  WARNING: Only {len(b2_with_defs)} B2 words with definitions available")
 
-    m2_word_pool = select_words(b1_with_defs, 6, f"{seed_base}-m2")
-    m3_word_pool = select_words(b2_with_defs, 6, f"{seed_base}-m3")
+    # Select words from the full bank (agent must ensure phonemic + definitions exist)
+    m2_word_pool = select_words(b1_all, 4, f"{seed_base}-m2")
+    m3_word_pool = select_words(b2_all, 4, f"{seed_base}-m3")
+
+    # Check every selected word has phonemic and definition; abort with instructions if not
+    for level, pool in [("M2/B1", m2_word_pool), ("M3/B2", m3_word_pool)]:
+        for word in pool:
+            missing = []
+            if word not in PHONEMIC:
+                missing.append("phonemic")
+            if word not in WORD_MEANINGS:
+                missing.append("definition")
+            if missing:
+                print(f"\n  ERROR: '{word}' ({level}) is missing {' and '.join(missing)}.")
+                print(f"  Add to config/phonemic.json and/or config/definitions.json:")
+                if "phonemic" in missing:
+                    print('    phonemic.json: "' + word + '": "<IPA with ASCII stress mark>"')
+                if "definition" in missing:
+                    print(f'    definitions.json: "{word}": {{"def": "<simple B1-level definition>", "pos": "<noun|verb|adj|adv>"}}')
+                sys.exit(1)
+
+    # Consume selected words: remove them from the permanent word banks (never reused)
+    for bank_path, pool, bank_list in [(b1_path, m2_word_pool, b1_all), (b2_path, m3_word_pool, b2_all)]:
+        consumed = set(pool)
+        remaining = [w for w in bank_list if w not in consumed]
+        with open(bank_path, "w", encoding="utf-8") as f:
+            json.dump(remaining, f, indent=2, ensure_ascii=False)
+        print(f"  Removed {len(consumed)} words from {bank_path.name} ({len(remaining)} remaining)")
 
     # Assign words to sections
     m2_data = {

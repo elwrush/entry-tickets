@@ -1,0 +1,73 @@
+{
+  "test": "M2 Entry Ticket Number 3",
+  "date": "060726",
+  "grammar_focus": "Adverb placement",
+  "sections": {
+    "phonemic": {
+      "instruction": "Write the English words",
+      "items": [
+        {
+          "number": 1,
+          "word": "count",
+          "phonemic": "kaʊnt"
+        },
+        {
+          "number": 2,
+          "word": "remind",
+          "phonemic": "rɪ'maɪnd"
+        }
+      ]
+    },
+    "dictation": {
+      "instruction": "Write what you hear",
+      "items": [
+        {
+          "number": 3,
+          "word": "encourage"
+        }
+      ]
+    },
+    "multiple_choice": {
+      "instruction": "Write the letter of the correct definition",
+      "items": [
+        {
+          "number": 4,
+          "word": "specifically",
+          "options": {
+            "A": "very quickly; at a fast speed",
+            "B": "for one particular thing or purpose",
+            "C": "finally, after everything else has been considered"
+          },
+          "correct": "B",
+          "definition": "for one particular thing or purpose"
+        }
+      ]
+    },
+    "true_false": {
+      "instruction": "True or False? Write T or F.",
+      "items": [
+        {
+          "number": 5,
+          "statement": "This sentence has correct adverb placement: \"She carefully placed the vase on the table.\"",
+          "answer": "T",
+          "explanation": "Adverbs of manner ('carefully') go before the main verb ('placed')."
+        },
+        {
+          "number": 6,
+          "statement": "This sentence is correct: \"They are always happy to help.\"",
+          "answer": "T",
+          "explanation": "Adverbs of frequency ('always') come after the verb 'to be' ('are')."
+        }
+      ]
+    },
+    "short_answer": {
+      "instruction": "Read the question. Write your answer (max 3 words or a number).",
+      "number": 7,
+      "question": "Correct the adverb placement: \"She drives carefully her car.\" (write the corrected sentence)",
+      "answer": "She drives her car carefully",
+      "acceptable_answers": [
+        "she drives her car carefully"
+      ]
+    }
+  }
+}

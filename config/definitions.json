@@ -1,0 +1,326 @@
+{
+  "acknowledge": {
+    "def": "to accept that something is true or exists",
+    "pos": "verb"
+  },
+  "actual": {
+    "def": "real and true, not imagined or guessed",
+    "pos": "adj"
+  },
+  "admit": {
+    "def": "to agree that something is true, especially when it is bad",
+    "pos": "verb"
+  },
+  "advise": {
+    "def": "to tell someone what you think they should do",
+    "pos": "verb"
+  },
+  "ambiguous": {
+    "def": "having more than one possible meaning; not clear",
+    "pos": "adj"
+  },
+  "apparent": {
+    "def": "easy to see or understand; obvious",
+    "pos": "adj"
+  },
+  "appreciate": {
+    "def": "to understand and enjoy something; to be grateful",
+    "pos": "verb"
+  },
+  "arrange": {
+    "def": "to put things in a particular order or position",
+    "pos": "verb"
+  },
+  "assess": {
+    "def": "to judge or decide the quality or value of something",
+    "pos": "verb"
+  },
+  "battery": {
+    "def": "a thing that gives power to phones, toys, and other devices",
+    "pos": "noun"
+  },
+  "benefit": {
+    "def": "a helpful or good result",
+    "pos": "noun"
+  },
+  "branch": {
+    "def": "a part of a tree that grows out from the trunk",
+    "pos": "noun"
+  },
+  "circumstance": {
+    "def": "a fact or condition that affects a situation",
+    "pos": "noun"
+  },
+  "climb": {
+    "def": "to go up something using your hands and feet",
+    "pos": "verb"
+  },
+  "compromise": {
+    "def": "an agreement where both sides give up something",
+    "pos": "noun"
+  },
+  "connect": {
+    "def": "to join two or more things together",
+    "pos": "verb"
+  },
+  "consequence": {
+    "def": "something that happens as a result of an action",
+    "pos": "noun"
+  },
+  "contemporary": {
+    "def": "belonging to the present time; modern",
+    "pos": "adj"
+  },
+  "controversy": {
+    "def": "a strong disagreement about something that many people have different opinions about",
+    "pos": "noun"
+  },
+  "count": {
+    "def": "to say numbers in order",
+    "pos": "verb"
+  },
+  "discipline": {
+    "def": "the practice of training people to obey rules",
+    "pos": "noun"
+  },
+  "discover": {
+    "def": "to find something for the first time",
+    "pos": "verb"
+  },
+  "encourage": {
+    "def": "to give someone hope or confidence",
+    "pos": "verb"
+  },
+  "entrance": {
+    "def": "a door or way into a place",
+    "pos": "noun"
+  },
+  "equivalent": {
+    "def": "equal in value, amount, or meaning",
+    "pos": "adj"
+  },
+  "establish": {
+    "def": "to start or create something that will last",
+    "pos": "verb"
+  },
+  "experience": {
+    "def": "knowledge or skill gained from doing something",
+    "pos": "noun"
+  },
+  "explicit": {
+    "def": "said or written in a very clear and direct way",
+    "pos": "adj"
+  },
+  "extend": {
+    "def": "to make something longer or larger",
+    "pos": "verb"
+  },
+  "facility": {
+    "def": "a building or place that is used for a particular activity",
+    "pos": "noun"
+  },
+  "fault": {
+    "def": "a mistake or something wrong with something",
+    "pos": "noun"
+  },
+  "implication": {
+    "def": "a possible future effect or result of something",
+    "pos": "noun"
+  },
+  "impression": {
+    "def": "a feeling or opinion you have about something",
+    "pos": "noun"
+  },
+  "incident": {
+    "def": "something that happens, especially something bad",
+    "pos": "noun"
+  },
+  "inevitable": {
+    "def": "certain to happen; impossible to avoid",
+    "pos": "adj"
+  },
+  "initiative": {
+    "def": "a new plan or project to solve a problem",
+    "pos": "noun"
+  },
+  "instance": {
+    "def": "an example of something happening",
+    "pos": "noun"
+  },
+  "instruct": {
+    "def": "to teach someone how to do something",
+    "pos": "verb"
+  },
+  "interpret": {
+    "def": "to explain the meaning of something",
+    "pos": "verb"
+  },
+  "interrupt": {
+    "def": "to stop someone while they are speaking or doing something",
+    "pos": "verb"
+  },
+  "limited": {
+    "def": "not very great in amount or size",
+    "pos": "adj"
+  },
+  "manipulate": {
+    "def": "to control someone or something in a clever or dishonest way",
+    "pos": "verb"
+  },
+  "massive": {
+    "def": "very large in size, amount, or degree",
+    "pos": "adj"
+  },
+  "measure": {
+    "def": "to find the size, amount, or level of something",
+    "pos": "verb"
+  },
+  "obvious": {
+    "def": "easy to see or understand",
+    "pos": "adj"
+  },
+  "operation": {
+    "def": "a planned activity that has a particular purpose",
+    "pos": "noun"
+  },
+  "parliament": {
+    "def": "a group of people who make the laws in some countries",
+    "pos": "noun"
+  },
+  "perspective": {
+    "def": "a particular way of thinking about or looking at something",
+    "pos": "noun"
+  },
+  "phenomenon": {
+    "def": "something that happens or exists that is unusual or interesting",
+    "pos": "noun"
+  },
+  "pleasure": {
+    "def": "a feeling of happiness or enjoyment",
+    "pos": "noun"
+  },
+  "positive": {
+    "def": "feeling good and happy about something",
+    "pos": "adj"
+  },
+  "prepare": {
+    "def": "to make something ready for use",
+    "pos": "verb"
+  },
+  "profound": {
+    "def": "very great or strong; having a deep effect",
+    "pos": "adj"
+  },
+  "property": {
+    "def": "something that belongs to someone",
+    "pos": "noun"
+  },
+  "prospect": {
+    "def": "the possibility that something good might happen in the future",
+    "pos": "noun"
+  },
+  "punish": {
+    "def": "to make someone suffer because they did something wrong",
+    "pos": "verb"
+  },
+  "rapidly": {
+    "def": "very quickly; at a fast speed",
+    "pos": "adv"
+  },
+  "remind": {
+    "def": "to help someone remember something",
+    "pos": "verb"
+  },
+  "respond": {
+    "def": "to answer someone or react to something",
+    "pos": "verb"
+  },
+  "separate": {
+    "def": "to divide things into different parts or groups",
+    "pos": "verb"
+  },
+  "sophisticated": {
+    "def": "having a lot of experience and knowledge about the world",
+    "pos": "adj"
+  },
+  "specifically": {
+    "def": "for one particular thing or purpose",
+    "pos": "adv"
+  },
+  "struggle": {
+    "def": "to try very hard to do something difficult",
+    "pos": "verb"
+  },
+  "sufficient": {
+    "def": "enough for a particular purpose",
+    "pos": "adj"
+  },
+  "suggest": {
+    "def": "to tell someone your idea about what they should do",
+    "pos": "verb"
+  },
+  "suitable": {
+    "def": "right for a particular purpose or situation",
+    "pos": "adj"
+  },
+  "support": {
+    "def": "to help someone by agreeing with them or giving what they need",
+    "pos": "verb"
+  },
+  "theory": {
+    "def": "an idea or set of ideas that explains something",
+    "pos": "noun"
+  },
+  "treatment": {
+    "def": "the way you behave towards someone or something",
+    "pos": "noun"
+  },
+  "ultimately": {
+    "def": "finally, after everything else has been considered",
+    "pos": "adv"
+  },
+  "worst": {
+    "def": "more bad than anything else; the opposite of best",
+    "pos": "adj"
+  },
+  "sensible": {
+    "def": "having good judgement; practical and reasonable",
+    "pos": "adj"
+  },
+  "application": {
+    "def": "a formal request for something, usually in writing",
+    "pos": "noun"
+  },
+  "electricity": {
+    "def": "a form of energy that powers lights, computers, and machines",
+    "pos": "noun"
+  },
+  "difficulty": {
+    "def": "something that is not easy to do or understand",
+    "pos": "noun"
+  },
+  "seriously": {
+    "def": "in a way that shows something is important",
+    "pos": "adv"
+  },
+  "assignment": {
+    "def": "a task or piece of work given to someone",
+    "pos": "noun"
+  },
+  "organ": {
+    "def": "a part of the body that does a particular job",
+    "pos": "noun"
+  },
+  "bunch": {
+    "def": "a group of things of the same kind",
+    "pos": "noun"
+  },
+  "associate": {
+    "def": "to connect someone or something with something else in your mind",
+    "pos": "verb"
+  },
+  "aspect": {
+    "def": "one part of a situation or subject",
+    "pos": "noun"
+  }
+}

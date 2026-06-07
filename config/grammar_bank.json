@@ -1,0 +1,501 @@
+{
+  "compound sentences": {
+    "tf_pool": [
+      {
+        "statement": "The following sentence is compound: \"My friend and I went to Paris last year.\"",
+        "answer": "F",
+        "explanation": "Simple sentence (one subject 'my friend and I', one predicate 'went'). A compound sentence has two independent clauses joined by a conjunction."
+      },
+      {
+        "statement": "This sentence is punctuated correctly: \"My sister likes chocolate but I prefer icecream.\"",
+        "answer": "F",
+        "explanation": "Missing comma before 'but'. Should be: '...chocolate, but I...'"
+      },
+      {
+        "statement": "The following is a compound sentence: \"She opened the door, and the cat ran out.\"",
+        "answer": "T",
+        "explanation": "Two independent clauses ('She opened the door' + 'the cat ran out') joined by 'and'."
+      },
+      {
+        "statement": "This sentence contains a coordinating conjunction: \"I like tea, but my brother prefers coffee.\"",
+        "answer": "T",
+        "explanation": "'But' is a coordinating conjunction joining two independent clauses."
+      },
+      {
+        "statement": "The following is a simple sentence: \"We went to the beach, and we swam in the sea.\"",
+        "answer": "F",
+        "explanation": "This is a compound sentence — two independent clauses joined by 'and'."
+      },
+      {
+        "statement": "This sentence needs a comma: \"He studied hard so he passed the exam.\"",
+        "answer": "T",
+        "explanation": "Compound sentence needs a comma before 'so'. Should be: '...hard, so he...'"
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "How many clauses does this sentence have? \"My friend is a wise and courageous person.\"",
+        "answer": "1",
+        "acceptable_answers": [
+          "1",
+          "one",
+          "1 clause",
+          "one clause"
+        ]
+      },
+      {
+        "question": "Is this a compound sentence? Answer yes or no: \"She sings and dances beautifully.\"",
+        "answer": "no",
+        "acceptable_answers": [
+          "no",
+          "n",
+          "false",
+          "f",
+          "simple"
+        ]
+      },
+      {
+        "question": "What conjunction joins these clauses? \"I wanted to go, but I was too tired.\"",
+        "answer": "but",
+        "acceptable_answers": [
+          "but"
+        ]
+      },
+      {
+        "question": "How many independent clauses does a compound sentence need?",
+        "answer": "2",
+        "acceptable_answers": [
+          "2",
+          "two"
+        ]
+      }
+    ]
+  },
+  "sentence fragments and run-ons": {
+    "tf_pool": [
+      {
+        "statement": "The following is a complete sentence: \"Because she was tired after the long journey.\"",
+        "answer": "F",
+        "explanation": "This is a sentence fragment (dependent clause). A complete sentence needs an independent clause."
+      },
+      {
+        "statement": "This is a run-on sentence: \"I love reading books I could spend all day in a library.\"",
+        "answer": "T",
+        "explanation": "Two independent clauses joined without punctuation or conjunction — a fused sentence (run-on)."
+      },
+      {
+        "statement": "The following is a complete sentence: \"When the bell rang.\"",
+        "answer": "F",
+        "explanation": "This is a fragment — 'when' makes it a dependent clause. Needs an independent clause."
+      },
+      {
+        "statement": "This sentence is correct: \"She went to the store and bought milk eggs and bread.\"",
+        "answer": "F",
+        "explanation": "Missing commas in a list. Should be: 'milk, eggs, and bread.'"
+      },
+      {
+        "statement": "The following is a complete sentence: \"She ran.\"",
+        "answer": "T",
+        "explanation": "A complete sentence needs only a subject and a verb. 'She ran' has both."
+      },
+      {
+        "statement": "This is a run-on sentence: \"The weather was cold we stayed inside.\"",
+        "answer": "T",
+        "explanation": "Two independent clauses run together without punctuation or conjunction."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Sentence or fragment? \"Although the movie was long and boring.\"",
+        "answer": "fragment",
+        "acceptable_answers": [
+          "fragment",
+          "sentence fragment",
+          "F",
+          "frag"
+        ]
+      },
+      {
+        "question": "Sentence or fragment? \"She smiled.\"",
+        "answer": "sentence",
+        "acceptable_answers": [
+          "sentence",
+          "complete sentence",
+          "S",
+          "T"
+        ]
+      },
+      {
+        "question": "Is this a run-on? Answer yes or no: \"I went home then I had dinner.\"",
+        "answer": "yes",
+        "acceptable_answers": [
+          "yes",
+          "y",
+          "true",
+          "t",
+          "run-on"
+        ]
+      },
+      {
+        "question": "What is missing in this sentence? \"I like reading I like writing too.\"",
+        "answer": "punctuation",
+        "acceptable_answers": [
+          "punctuation",
+          "a conjunction",
+          "conjunction",
+          "comma",
+          "period"
+        ]
+      }
+    ]
+  },
+  "first conditional": {
+    "tf_pool": [
+      {
+        "statement": "This sentence is correct: \"If it will rain, I stay home.\"",
+        "answer": "F",
+        "explanation": "First conditional uses present simple in the if-clause, not 'will'. Correct: 'If it rains, I will stay home.'"
+      },
+      {
+        "statement": "This is a correct first conditional: \"If she studies, she will pass the exam.\"",
+        "answer": "T",
+        "explanation": "Present simple in the if-clause ('studies'), will + infinitive in the main clause ('will pass')."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Complete: \"If you heat ice, it ___.\" (fill with one word)",
+        "answer": "melts",
+        "acceptable_answers": [
+          "melts",
+          "will melt"
+        ]
+      }
+    ]
+  },
+  "capitalisation": {
+    "tf_pool": [
+      {
+        "statement": "This sentence is correct: \"my brother lives in london.\"",
+        "answer": "F",
+        "explanation": "'My' must be capitalised at the start of a sentence, and 'London' is a proper noun that requires a capital letter."
+      },
+      {
+        "statement": "This sentence is punctuated and capitalised correctly: \"I went to Paris in June.\"",
+        "answer": "T",
+        "explanation": "'I' is always capitalised, 'Paris' is a proper noun, and 'June' is a month — all correctly capitalised."
+      },
+      {
+        "statement": "This sentence is correct: \"My favourite subject is english and my teacher is Mr Jones.\"",
+        "answer": "F",
+        "explanation": "'English' is a language and must be capitalised as a proper noun."
+      },
+      {
+        "statement": "This sentence is correct: \"We visited the Eiffel Tower when we went to France.\"",
+        "answer": "T",
+        "explanation": "'Eiffel Tower' is a specific landmark (proper noun), and 'France' is a country — both correctly capitalised."
+      },
+      {
+        "statement": "This sentence is correct: \"My mother works at a hospital on Main Street.\"",
+        "answer": "T",
+        "explanation": "'Main Street' is a specific street name and should be capitalised as a proper noun."
+      },
+      {
+        "statement": "This sentence is correct: \"she said, 'can you help me?'\"",
+        "answer": "F",
+        "explanation": "'She' must be capitalised at the start of the sentence, and the quoted question should start with a capital: 'Can you help me?'"
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "What is wrong with this sentence? \"i went to the store.\" (one word answer)",
+        "answer": "capitalisation",
+        "acceptable_answers": [
+          "capitalisation",
+          "capitalization",
+          "capital i",
+          "capitalise i"
+        ]
+      },
+      {
+        "question": "Should the word \"french\" be capitalised in this sentence? Answer yes or no: \"She speaks french fluently.\"",
+        "answer": "yes",
+        "acceptable_answers": [
+          "yes",
+          "y",
+          "true",
+          "t"
+        ]
+      },
+      {
+        "question": "How many capital letters are missing? \"my friend sarah lives in new york.\" (answer with a number)",
+        "answer": "4",
+        "acceptable_answers": [
+          "4",
+          "four"
+        ]
+      },
+      {
+        "question": "Should \"doctor\" be capitalised in this sentence? Answer yes or no: \"I have an appointment with Doctor Smith.\"",
+        "answer": "yes",
+        "acceptable_answers": [
+          "yes",
+          "y",
+          "true",
+          "t"
+        ]
+      }
+    ]
+  },
+  "adverb placement": {
+    "tf_pool": [
+      {
+        "statement": "This sentence has correct adverb placement: \"She speaks fluently English.\"",
+        "answer": "F",
+        "explanation": "Adverbs of manner go after the object when there is one, or after the verb. Correct: 'She speaks English fluently.'"
+      },
+      {
+        "statement": "This sentence has correct adverb placement: \"He always arrives on time.\"",
+        "answer": "T",
+        "explanation": "Adverbs of frequency ('always') go before the main verb ('arrives')."
+      },
+      {
+        "statement": "This sentence is correct: \"They are always happy to help.\"",
+        "answer": "T",
+        "explanation": "Adverbs of frequency ('always') come after the verb 'to be' ('are')."
+      },
+      {
+        "statement": "This sentence has correct adverb placement: \"Quickly she ran to the bus stop.\"",
+        "answer": "T",
+        "explanation": "Adverbs of manner can be placed at the beginning of a sentence for emphasis."
+      },
+      {
+        "statement": "This sentence is correct: \"I like very much chocolate.\"",
+        "answer": "F",
+        "explanation": "Adverbs of degree ('very much') go after the verb or after the object. Correct: 'I like chocolate very much.'"
+      },
+      {
+        "statement": "This sentence has correct adverb placement: \"She carefully placed the vase on the table.\"",
+        "answer": "T",
+        "explanation": "Adverbs of manner ('carefully') go before the main verb ('placed')."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Where should \"often\" go? \"I ___ am ___ tired after work ___.\" Choose: before/verb/after/end",
+        "answer": "am",
+        "acceptable_answers": [
+          "after am",
+          "after 'am'",
+          "am",
+          "after the verb to be"
+        ]
+      },
+      {
+        "question": "Correct the adverb placement: \"She drives carefully her car.\" (write the corrected sentence)",
+        "answer": "She drives her car carefully",
+        "acceptable_answers": [
+          "she drives her car carefully"
+        ]
+      },
+      {
+        "question": "Where does \"always\" go in this sentence? \"They ___ are ___ late ___.\" Choose: before/after/end",
+        "answer": "after",
+        "acceptable_answers": [
+          "after are",
+          "after 'are'",
+          "after the verb to be",
+          "after"
+        ]
+      },
+      {
+        "question": "Is this adverb placement correct? Answer yes or no: \"He quickly ate his dinner.\"",
+        "answer": "yes",
+        "acceptable_answers": [
+          "yes",
+          "y",
+          "true",
+          "t",
+          "correct"
+        ]
+      }
+    ]
+  },
+  "spelling": {
+    "tf_pool": [
+      {
+        "statement": "This sentence is spelled correctly: \"She received a letter yesterday.\"",
+        "answer": "T",
+        "explanation": "'Received' follows the 'i before e except after c' rule and is spelled correctly."
+      },
+      {
+        "statement": "This sentence is spelled correctly: \"Their are many reasons to study hard.\"",
+        "answer": "F",
+        "explanation": "'Their' is a possessive pronoun. The correct word here is 'There' (existential there)."
+      },
+      {
+        "statement": "This sentence is spelled correctly: \"The principle of the school gave a speech.\"",
+        "answer": "F",
+        "explanation": "'Principle' means a fundamental truth. The correct word is 'principal' (head of a school)."
+      },
+      {
+        "statement": "This sentence is spelled correctly: \"It is necessary to bring your passport.\"",
+        "answer": "T",
+        "explanation": "'Necessary' is a commonly misspelled word but is spelled correctly here (one 'c', two 's's)."
+      },
+      {
+        "statement": "This sentence is spelled correctly: \"The whether was beautiful today.\"",
+        "answer": "F",
+        "explanation": "'Whether' is used for alternatives. The correct word here is 'weather' (climate conditions)."
+      },
+      {
+        "statement": "This sentence is spelled correctly: \"She definitely wants to come with us.\"",
+        "answer": "T",
+        "explanation": "'Definitely' is commonly misspelled but is correct here (spelled with two 'i's: de-fin-ite-ly)."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Spell the word that means \"a place where you borrow books\": l___y.",
+        "answer": "library",
+        "acceptable_answers": [
+          "library"
+        ]
+      },
+      {
+        "question": "What is the correct spelling? \"She was ___ (disappointed / dissapointed) with the result.\"",
+        "answer": "disappointed",
+        "acceptable_answers": [
+          "disappointed"
+        ]
+      },
+      {
+        "question": "Correct the spelling: \"He recieved a prize.\"",
+        "answer": "received",
+        "acceptable_answers": [
+          "received"
+        ]
+      },
+      {
+        "question": "Which is correct: \"accommodation\" or \"accomodation\"?",
+        "answer": "accommodation",
+        "acceptable_answers": [
+          "accommodation",
+          "accommodation"
+        ]
+      }
+    ]
+  },
+  "spelling (homophones)": {
+    "tf_pool": [
+      {
+        "statement": "This sentence is correct: \"Their are three main reasons for the decision.\"",
+        "answer": "F",
+        "explanation": "'Their' is a possessive pronoun. The correct word is 'There' (existential there)."
+      },
+      {
+        "statement": "This sentence is correct: \"You should bring your own lunch tomorrow.\"",
+        "answer": "T",
+        "explanation": "'Your' is the possessive form, used correctly here."
+      },
+      {
+        "statement": "This sentence is correct: \"The dog wagged it's tail happily.\"",
+        "answer": "F",
+        "explanation": "'It's' is a contraction of 'it is'. The possessive form is 'its' (no apostrophe)."
+      },
+      {
+        "statement": "This sentence is correct: \"She was too tired to finish the assignment.\"",
+        "answer": "T",
+        "explanation": "'Too' meaning 'excessively' is used correctly here."
+      },
+      {
+        "statement": "This sentence is correct: \"The new policy will effect everyone in the company.\"",
+        "answer": "F",
+        "explanation": "'Effect' is a noun meaning 'result'. The correct verb here is 'affect' (to influence)."
+      },
+      {
+        "statement": "This sentence is correct: \"The principal of the school announced the new rules.\"",
+        "answer": "T",
+        "explanation": "'Principal' meaning 'head of a school' is used correctly here."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Which word is wrong in this sentence? \"Their are too many students in the room.\" (write the incorrect word)",
+        "answer": "Their",
+        "acceptable_answers": ["Their", "their"]
+      },
+      {
+        "question": "Correct the error: \"The company reported it's quarterly earnings.\" (write the corrected word)",
+        "answer": "its",
+        "acceptable_answers": ["its"]
+      },
+      {
+        "question": "Fill in the blank: \"___ coming to the party?\" (your / you're)",
+        "answer": "You're",
+        "acceptable_answers": ["You're", "you're"]
+      },
+      {
+        "question": "Choose the correct word: \"The weather will (affect / effect) our travel plans.\"",
+        "answer": "affect",
+        "acceptable_answers": ["affect"]
+      }
+    ]
+  },
+  "present perfect tense": {
+    "tf_pool": [
+      {
+        "statement": "This sentence is correct: \"I have visited Paris last year.\"",
+        "answer": "F",
+        "explanation": "Present perfect cannot be used with a specific past time expression like 'last year'. Use past simple: 'I visited Paris last year.'"
+      },
+      {
+        "statement": "This sentence is correct: \"She has never tried sushi before.\"",
+        "answer": "T",
+        "explanation": "'Never' with present perfect is correct for describing life experiences up to now."
+      },
+      {
+        "statement": "This sentence is correct: \"They have already finished their homework.\"",
+        "answer": "T",
+        "explanation": "'Already' with present perfect is correct for an action completed before now."
+      },
+      {
+        "statement": "This sentence is correct: \"He has went to the store.\"",
+        "answer": "F",
+        "explanation": "The past participle of 'go' is 'gone', not 'went'. Correct: 'He has gone to the store.'"
+      },
+      {
+        "statement": "This sentence is correct: \"We have been studying here since 2020.\"",
+        "answer": "T",
+        "explanation": "Present perfect with 'since' is correct for an action that started in the past and continues."
+      },
+      {
+        "statement": "This sentence is correct: \"I have seen that movie three times.\"",
+        "answer": "T",
+        "explanation": "Present perfect is correct for repeated actions at an unspecified time."
+      }
+    ],
+    "short_pool": [
+      {
+        "question": "Fill in the blank: \"She ___ (live) in London since 2019.\"",
+        "answer": "has lived",
+        "acceptable_answers": ["has lived", "'s lived", "has been living"]
+      },
+      {
+        "question": "Correct the tense: \"I have seen him yesterday.\" (write the corrected sentence in 4 words)",
+        "answer": "I saw him yesterday",
+        "acceptable_answers": ["I saw him yesterday"]
+      },
+      {
+        "question": "Complete the sentence: \"They ___ (not finish) the project yet.\" (write the missing verb phrase)",
+        "answer": "have not finished",
+        "acceptable_answers": ["have not finished", "haven't finished", "have not completed"]
+      },
+      {
+        "question": "Choose the correct form: \"She (has went / has gone) to the bank.\"",
+        "answer": "has gone",
+        "acceptable_answers": ["has gone"]
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 ---
 name: build-entry-ticket
-description: Builds entry ticket test slideshows (reveal.js + TTS audio + answer keys) for M2 and M3 levels. Fetches Oxford word lists from jnoodle GitHub, generates IPA transcriptions, produces TTS dictation audio, and writes per-class answer sheets as Typst PDFs.
+description: Builds entry ticket test slideshows (reveal.js + TTS audio + answer keys) for M2 and M3 levels. Selects words from permanent Oxford B1/B2 word banks, consumes them on use, uses IPA from agent-written phonemic bank, produces TTS dictation audio, and writes per-class answer sheets as Typst PDFs.
 ---
 
 # Skill: Build Entry Ticket
@@ -13,6 +13,7 @@ The test structure per level:
 
 | Slide | Content | Items | Timing | Audio |
 |---|---|---|---|---|
+| 0 | TOC — click M2 or M3 to start | — | Teacher click | — |
 | 1 | Title — "M2 Entry Ticket Number X" | — | Teacher click | — |
 | 2 | Phonemic transcription — 2 words from Oxford B1/B2 list | 1, 2 | 15s auto-advance | — |
 | 3 | Dictation — 1 word spoken by TTS | 3 | Auto-advance after audio | Inworld TTS |
@@ -21,11 +22,13 @@ The test structure per level:
 | 6 | Short answer — 1 grammar question | 7 | 15s auto-advance | — |
 | 7 | STOP / DON'T TALK / RETURN YOUR PAPERS | — | Static | — |
 
-**Total slides:** 14 (M2 × 7 + M3 × 7)
+**Total slides:** 15 (1 TOC + M2 × 7 + M3 × 7)
+
+M2 runs slides 0–7, then M3 runs slides 8–14 (same pattern repeated).
 
 ## When to Use
 
-Use this skill when you need to build entry ticket tests for M2 (B1) and/or M3 (B2) classes. The skill handles the complete pipeline: word extraction from Oxford PDFs, IPA generation, TTS audio, slide assembly, and answer keys.
+Use this skill when you need to build entry ticket tests for M2 (B1) and/or M3 (B2) classes. The skill handles the complete pipeline: word selection from permanent Oxford B1/B2 banks, IPA lookup from agent-provided phonemic bank, TTS audio, slide assembly, and answer keys. Selected words are consumed from the banks and never repeat.
 
 **Trigger:** `/build-entry-ticket` command or direct request.
 
@@ -38,6 +41,7 @@ Use this skill when you need to build entry ticket tests for M2 (B1) and/or M3 (
 - **Unadorned:** No logos, no badges, no borders, no icons — pure text on black
 - **Answers never shown on screen** — speaker notes only
 - **Slide numbering:** Questions numbered 1–7 per level (resets for M3)
+- **Academic English conventions:** All question text, example sentences, and wording must observe the conventions of formal academic English — appropriate punctuation, standard grammar, and register-consistent phrasing. This is a governing principle, not an exhaustive rulebook; the agent and authorial voice are expected to exercise judgement to produce naturally correct academic prose without needing every rule enumerated.
 
 ## Workflow (7 Steps)
 
@@ -74,72 +78,48 @@ Scan `ANSWER_KEYS/` directory for existing answer key JSON files. Find the highe
 
 ---
 
-### Step 3 — Fetch Oxford Word Lists
+### Step 3 — Word Selection from Permanent Banks
 
-Download the Oxford 3000 by CEFR level PDF from the jnoodle GitHub repo and extract B1 and B2 word lists.
+The build script loads B1 and B2 words from permanent config files, not from the Oxford PDF. These files were populated once from the Oxford 3000 CEFR list and **shrink over time** as words are consumed by builds.
 
-**Source:** `https://github.com/jnoodle/English-Vocabulary-Word-List`
-**PDF:** `Oxford 3000_by CEFR level.pdf` (12 pages: A1 pages 1–3, A2 pages 4–6, B1 pages 7–9, B2 pages 10–12)
+**Word banks:**
+- B1 → `config/words_b1.json` (array of word strings, from Oxford B1 list)
+- B2 → `config/words_b2.json` (array of word strings, from Oxford B2 list)
+- Source: `https://github.com/jnoodle/English-Vocabulary-Word-List`
 
-**Extract words with Python:**
+**Selection:**
+- Seeded random: `seed = f"{date}{test_number}-m{level}"` for reproducibility
+- 4 words per level: index 0-1 for phonemic slides, index 2 for dictation, index 3 for MC
 
-```python
-import urllib.request, fitz
+**Consumption:**
+- After the build, the 4 selected words are **removed from the bank file**
+- They can never be selected again — the bank permanently shrinks
 
-def extract_words_by_level(pdf_url: str, level_header: str) -> list[str]:
-    """Extract words for a given CEFR level from the Oxford 3000 PDF."""
-    resp = urllib.request.urlopen(pdf_url)
-    doc = fitz.open(stream=resp.read(), filetype="pdf")
+**What the agent must provide:**
+Before the build succeeds, every selected word needs:
+1. A phonemic transcription in `config/phonemic.json`
+2. A simple B1/B2-level definition in `config/definitions.json`
 
-    # Find start and end pages for the level
-    pages = []
-    in_level = False
-    for i in range(doc.page_count):
-        text = doc[i].get_text()
-        lines = text.split("\n")
-        for line in lines:
-            line = line.strip()
-            if line == level_header:
-                in_level = True
-                continue  # skip the header itself
-            # Next level header ends the current level
-            if in_level and line in ("A1", "A2", "B1", "B2", "C1", "C2") and line != level_header:
-                in_level = False
-                break
-        if in_level:
-            pages.append(i)
+If either is missing, the build prints the exact word and aborts. The agent adds the missing entry directly to the JSON file using raw IPA characters (or JSON `\uXXXX` escapes if the console can't display them), then re-runs.
 
-    doc.close()
-    return words
-```
-
-Actually extract by collecting all lines between level headers across the relevant pages.
-
-**Word pools needed:**
-- M2 (B1): 4 words from B1 list (2 phonemic + 1 dictation + 1 MC)
-- M3 (B2): 4 words from B2 list (2 phonemic + 1 dictation + 1 MC)
-
-**Selection criteria:**
-- Minimum 5 characters (exclude words like "a", "an", "and", "but", "the")
-- Must be real English words (no abbreviations)
-- Prefer words with non-trivial pronunciation (avoid "cat", "dog")
-- For MC: must have a clear definition that can be contrasted with plausible distractors
-
-**Random selection:**
-Use `random.Random(seed)` where `seed = f"{date}{test_number}-m{level}"` for reproducible selection.
-Pick 2 phonemic words, 1 dictation word, 1 MC word (all different, 4 total per level).
+**Selection criteria (for the initial Oxford extraction):**
+- Minimum 5 characters
+- Must be real English words
+- Prefer words with non-trivial pronunciation
 
 ---
 
-### Step 4 — Generate Phonemic Transcriptions
+### Step 4 — Ensure Phonemic Transcriptions
 
-For each phonemic word, get its IPA transcription.
+Phonemic transcriptions are stored in `config/phonemic.json` (a separate lookup file from the word banks). If a selected word lacks a phonemic entry, the build aborts and tells the agent exactly which word to add.
 
-**Primary:** Install `eng_to_ipa` (`pip install eng_to_ipa`), use `ipa.convert(word, keep_punctuation=False)`.
+The agent adds the missing entry directly to `config/phonemic.json`:
+- Using the `edit` tool with raw IPA characters (works correctly — the edit tool handles UTF-8)
+- Or using JSON `\uXXXX` escapes if console encoding prevents direct character input
 
-**Fallback:** Free Dictionary API `https://api.dictionaryapi.dev/api/v2/entries/en/{word}` — extract `phonetics[0].text`.
+**Conventions:** Raw IPA string without surrounding slashes, no syllable-separating periods (`.`), primary stress marked with ASCII apostrophe (`'`) not IPA `ˈ`. Displayed on the slide as bare IPA symbols.
 
-**Format:** Raw IPA string without surrounding slashes. Displayed on slide as the IPA symbols only.
+**No phonetic libraries or APIs:** `eng_to_ipa` is installed but never used. The Free Dictionary API is never called for phonemic data. All transcriptions come from agent knowledge.
 
 ---
 
@@ -168,6 +148,19 @@ Build a single `index.html` file. Start from `templates/entry-ticket-slides.html
 **Slide patterns (per level):**
 
 All sections use `data-background-color="#000000"`.
+
+#### Slide 0: TOC (table of contents)
+```html
+<section id="slide-toc" data-background-color="#000000" style="display: flex; justify-content: center; align-items: center;">
+  <h2 style="font-family: Arial, sans-serif; font-size: 2.0em; color: #fff; margin-bottom: 0.8em;">Entry Ticket Number 1</h2>
+  <p style="font-family: Arial, sans-serif; font-size: 1.3em; margin: 0.4em 0;">
+    <a href="#/1" style="color: #ffdd00; text-decoration: none;">M2 Entry Ticket &rarr;</a>
+  </p>
+  <p style="font-family: Arial, sans-serif; font-size: 1.3em; margin: 0.4em 0;">
+    <a href="#/8" style="color: #ffdd00; text-decoration: none;">M3 Entry Ticket &rarr;</a>
+  </p>
+</section>
+```
 
 #### Slide 1: Title
 ```html
@@ -256,7 +249,8 @@ correct_letter = chr(65 + options.index(correct_def))  # A, B, or C
 </section>
 ```
 
-#### Complete deck order (14 slides):
+#### Complete deck order (15 slides):
+0. `slide-toc`
 1. `slide-m2-title`
 2. `slide-m2-phonemic`
 3. `slide-m2-dictation`
@@ -274,11 +268,12 @@ correct_letter = chr(65 + options.index(correct_def))  # A, B, or C
 
 #### Splice approach
 
-1. Build all 14 `<section>` elements in a string
-2. Copy `templates/entry-ticket-slides.html` to `slides/index.html`
+1. Build all 15 `<section>` elements in a string (TOC + M2×7 + M3×7)
+2. Load `templates/entry-ticket-slides.html` template
 3. Replace `<!-- TEST_TITLE -->` with `"Entry Ticket Number {test_number}"`
-4. Find the `<!-- SLIDES WILL BE SPLICED HERE -->` comment and insert the sections
-5. Update any necessary paths
+4. Replace `<!-- SLIDES WILL BE SPLICED HERE -->` with the sections HTML
+5. Write to `slides/entry-ticket-{N}/index.html`
+6. Rebuild root TOC at `slides/index.html` via `build_root_toc()`
 
 ---
 
@@ -347,30 +342,43 @@ Final project tree after build:
 ```
 C:\PROJECTS\ENTRY TICKETS\
 ├── slides\
-│   ├── index.html                     # Combined M2 + M3 reveal.js deck (14 slides)
-│   └── assets\
-│       ├── m2_dictation_{word}.mp3
-│       └── m3_dictation_{word}.mp3
+│   ├── index.html                     # Root TOC — lists all available entry ticket versions
+│   └── entry-ticket-{N}\
+│       ├── index.html                 # Combined M2+M3 deck (15 slides: TOC + M2×7 + M3×7)
+│       └── assets\                    # TTS dictation audio MP3s
 ├── ANSWER_KEYS\
 │   ├── M2-entry-ticket-{N}.json
 │   └── M3-entry-ticket-{N}.json
-├── output\                            # Per-class PDF answer sheets
+├── output\                            # Per-class PDF answer sheets from Typst
 │   ├── M2-4A-entry-tickets.pdf
 │   ├── M2-5A-entry-tickets.pdf
 │   ├── M3-3A-entry-tickets.pdf
 │   ├── M3-4A-entry-tickets.pdf
 │   └── M3-5A-entry-tickets.pdf
 ├── scripts\
-│   └── build_entry_tickets.py        # Supabase → Typst → PDF pipeline
+│   ├── build_test_slides.py          # Main test builder: word selection, slides, TTS, answer keys
+│   ├── build_entry_tickets.py        # Supabase → Typst → PDF per-class answer sheets
+│   └── test_entry_tickets.py         # Test harness / helpers
 ├── templates\
-│   ├── ACT.png
-│   ├── cambridge.png
-│   └── entry-ticket-slides.html      # Base reveal.js template
+│   ├── entry-ticket-slides.html      # Base reveal.js template (15-slide deck)
+│   ├── ACT.png                       # Logo for Typst PDF headers
+│   └── cambridge.png                 # Logo for Typst PDF headers
+├── config\
+│   ├── words_b1.json                 # Permanent B1 word bank (array, shrinks as consumed)
+│   ├── words_b2.json                 # Permanent B2 word bank (array, shrinks as consumed)
+│   ├── phonemic.json                 # Phonemic lookup (word → IPA)
+│   ├── definitions.json              # Definition lookup (word → {def, pos})
+│   ├── grammar_bank.json             # Grammar questions (T/F + short answer per topic)
+│   └── tts_vocab_voice.json          # Inworld TTS voice ID
+├── .word_cache\                      # Cached Oxford 3000 word lists (for resetting banks)
 └── .kilo\
     ├── command\
-    │   └── build-entry-ticket.md
+    │   ├── build-entry-ticket.md
+    │   └── git-backup.md
     └── skills\
-        └── build-entry-ticket\
+        ├── build-entry-ticket\
+        │   └── SKILL.md
+        └── git-backup\
             └── SKILL.md
 ```
 
@@ -379,13 +387,12 @@ C:\PROJECTS\ENTRY TICKETS\
 ## Edge Cases
 
 | Scenario | Handling |
-|---|---|
-| Oxford PDF download fails | Use local cached copy; if none, warn user and use hardcoded fallback list |
-| IPA generation fails for a word | Try dictionary API; if that also fails, replace the word and retry |
+|---|---|---|
+| Word lacks phonemic transcription | Build aborts with the word name; agent adds it to `config/phonemic.json` via `edit` tool |
+| Word lacks definition | Build aborts with the word name; agent adds it to `config/definitions.json` via `edit` tool |
 | Inworld API key not set | Skip audio generation, show dictation without audio, warn user |
-| Test number folder conflict | Warn user; overwrite with confirmation |
-| Word list runs out of eligible words | Relax selection criteria (allow 4+ chars, simpler words) |
-| No B1/B2 words available | Fall back to Oxford 3000 flat list; warn user about level mismatch |
+| Test number folder conflict | Overwrite existing files (each build is deterministic for the same test number) |
+| Word bank runs dry | Re-populate from `.word_cache/` cache or re-download Oxford PDF; then add phonemic/definitions for needed words |
 
 ---
 

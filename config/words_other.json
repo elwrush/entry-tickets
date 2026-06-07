@@ -1,0 +1,128 @@
+{
+  "respond": {
+    "word": "respond",
+    "def": "to answer someone or react to something",
+    "pos": "verb",
+    "phonemic": "rɪ'spɒnd"
+  },
+  "arrange": {
+    "word": "arrange",
+    "def": "to put things in a particular order or position",
+    "pos": "verb",
+    "phonemic": "ə'reɪndʒ"
+  },
+  "connect": {
+    "word": "connect",
+    "def": "to join two or more things together",
+    "pos": "verb",
+    "phonemic": "kə'nekt"
+  },
+  "discover": {
+    "word": "discover",
+    "def": "to find something for the first time",
+    "pos": "verb",
+    "phonemic": "dɪ'skʌvə"
+  },
+  "instruct": {
+    "word": "instruct",
+    "def": "to teach someone how to do something",
+    "pos": "verb",
+    "phonemic": "ɪn'strʌkt"
+  },
+  "measure": {
+    "word": "measure",
+    "def": "to find the size, amount, or level of something",
+    "pos": "verb",
+    "phonemic": "'meʒə"
+  },
+  "prepare": {
+    "word": "prepare",
+    "def": "to make something ready for use",
+    "pos": "verb",
+    "phonemic": "prɪ'peə"
+  },
+  "struggle": {
+    "word": "struggle",
+    "def": "to try very hard to do something difficult",
+    "pos": "verb",
+    "phonemic": "'strʌɡəl"
+  },
+  "suggest": {
+    "word": "suggest",
+    "def": "to tell someone your idea about what they should do",
+    "pos": "verb",
+    "phonemic": "sə'dʒest"
+  },
+  "support": {
+    "word": "support",
+    "def": "to help someone by agreeing with them or giving what they need",
+    "pos": "verb",
+    "phonemic": "sə'pɔːt"
+  },
+  "controversy": {
+    "word": "controversy",
+    "def": "a strong disagreement about something that many people have different opinions about",
+    "pos": "noun",
+    "phonemic": "'kɒntrəvɜːsi"
+  },
+  "profound": {
+    "word": "profound",
+    "def": "very great or strong; having a deep effect",
+    "pos": "adj",
+    "phonemic": "prə'faʊnd"
+  },
+  "sophisticated": {
+    "word": "sophisticated",
+    "def": "having a lot of experience and knowledge about the world",
+    "pos": "adj",
+    "phonemic": "sə'fɪstɪkeɪtɪd"
+  },
+  "inevitable": {
+    "word": "inevitable",
+    "def": "certain to happen; impossible to avoid",
+    "pos": "adj",
+    "phonemic": "ɪ'nevɪtəbəl"
+  },
+  "explicit": {
+    "word": "explicit",
+    "def": "said or written in a very clear and direct way",
+    "pos": "adj",
+    "phonemic": "ɪk'splɪsɪt"
+  },
+  "compromise": {
+    "word": "compromise",
+    "def": "an agreement where both sides give up something",
+    "pos": "noun",
+    "phonemic": "'kɒmprəmaɪz"
+  },
+  "ambiguous": {
+    "word": "ambiguous",
+    "def": "having more than one possible meaning; not clear",
+    "pos": "adj",
+    "phonemic": "æm'bɪɡjuəs"
+  },
+  "sufficient": {
+    "word": "sufficient",
+    "def": "enough for a particular purpose",
+    "pos": "adj",
+    "phonemic": "sə'fɪʃənt"
+  },
+  "manipulate": {
+    "word": "manipulate",
+    "def": "to control someone or something in a clever or dishonest way",
+    "pos": "verb",
+    "phonemic": "mə'nɪpjʊleɪt"
+  },
+  "equivalent": {
+    "word": "equivalent",
+    "def": "equal in value, amount, or meaning",
+    "pos": "adj",
+    "phonemic": "ɪ'kwɪvələnt"
+  },
+  "implication": {
+    "word": "implication",
+    "def": "a possible future effect or result of something",
+    "pos": "noun",
+    "phonemic": "ˌɪmplɪ'keɪʃən"
+  }
+}

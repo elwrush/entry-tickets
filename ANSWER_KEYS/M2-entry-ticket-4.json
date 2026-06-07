@@ -1,0 +1,74 @@
+{
+  "test": "M2 Entry Ticket Number 4",
+  "date": "060726",
+  "grammar_focus": "Spelling (homophones)",
+  "sections": {
+    "phonemic": {
+      "instruction": "Write the English words",
+      "items": [
+        {
+          "number": 1,
+          "word": "sensible",
+          "phonemic": "'sensəbəl"
+        },
+        {
+          "number": 2,
+          "word": "application",
+          "phonemic": "ˌæplɪ'keɪʃən"
+        }
+      ]
+    },
+    "dictation": {
+      "instruction": "Write what you hear",
+      "items": [
+        {
+          "number": 3,
+          "word": "seriously"
+        }
+      ]
+    },
+    "multiple_choice": {
+      "instruction": "Write the letter of the correct definition",
+      "items": [
+        {
+          "number": 4,
+          "word": "assignment",
+          "options": {
+            "A": "a new plan or project to solve a problem",
+            "B": "a task or piece of work given to someone",
+            "C": "a mistake or something wrong with something"
+          },
+          "correct": "B",
+          "definition": "a task or piece of work given to someone"
+        }
+      ]
+    },
+    "true_false": {
+      "instruction": "True or False? Write T or F.",
+      "items": [
+        {
+          "number": 5,
+          "statement": "This sentence is correct: \"The principal of the school announced the new rules.\"",
+          "answer": "T",
+          "explanation": "'Principal' meaning 'head of a school' is used correctly here."
+        },
+        {
+          "number": 6,
+          "statement": "This sentence is correct: \"You should bring your own lunch tomorrow.\"",
+          "answer": "T",
+          "explanation": "'Your' is the possessive form, used correctly here."
+        }
+      ]
+    },
+    "short_answer": {
+      "instruction": "Read the question. Write your answer (max 3 words or a number).",
+      "number": 7,
+      "question": "Which word is wrong in this sentence? \"Their are too many students in the room.\" (write the incorrect word)",
+      "answer": "Their",
+      "acceptable_answers": [
+        "Their",
+        "their"
+      ]
+    }
+  }
+}

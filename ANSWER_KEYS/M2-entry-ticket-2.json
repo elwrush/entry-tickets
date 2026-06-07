@@ -1,0 +1,74 @@
+{
+  "test": "M2 Entry Ticket Number 2",
+  "date": "060726",
+  "grammar_focus": "Capitalisation",
+  "sections": {
+    "phonemic": {
+      "instruction": "Write the English words",
+      "items": [
+        {
+          "number": 1,
+          "word": "advise",
+          "phonemic": "əd'vaɪz"
+        },
+        {
+          "number": 2,
+          "word": "worst",
+          "phonemic": "wɜːst"
+        }
+      ]
+    },
+    "dictation": {
+      "instruction": "Write what you hear",
+      "items": [
+        {
+          "number": 3,
+          "word": "punish"
+        }
+      ]
+    },
+    "multiple_choice": {
+      "instruction": "Write the letter of the correct definition",
+      "items": [
+        {
+          "number": 4,
+          "word": "consequence",
+          "options": {
+            "A": "something that happens as a result of an action",
+            "B": "a possible future effect or result of something",
+            "C": "an agreement where both sides give up something"
+          },
+          "correct": "A",
+          "definition": "something that happens as a result of an action"
+        }
+      ]
+    },
+    "true_false": {
+      "instruction": "True or False? Write T or F.",
+      "items": [
+        {
+          "number": 5,
+          "statement": "This sentence is correct: \"she said, 'can you help me?'\"",
+          "answer": "F",
+          "explanation": "'She' must be capitalised at the start of the sentence, and the quoted question should start with a capital: 'Can you help me?'"
+        },
+        {
+          "number": 6,
+          "statement": "This sentence is correct: \"We visited the Eiffel Tower when we went to France.\"",
+          "answer": "T",
+          "explanation": "'Eiffel Tower' is a specific landmark (proper noun), and 'France' is a country — both correctly capitalised."
+        }
+      ]
+    },
+    "short_answer": {
+      "instruction": "Read the question. Write your answer (max 3 words or a number).",
+      "number": 7,
+      "question": "How many capital letters are missing? \"my friend sarah lives in new york.\" (answer with a number)",
+      "answer": "4",
+      "acceptable_answers": [
+        "4",
+        "four"
+      ]
+    }
+  }
+}
